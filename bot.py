@@ -28,6 +28,7 @@ class TelegramBot(telepot.Bot):
 
         self.restricted = config.getboolean('telegrambot', 'restrict_contacts')
         self.allowedusers = config.get('telegrambot', 'allowed_contacts').split(',')
+        self.callbackusers = config.get('telegrambot', 'callback_contacts').split(',')
         self.botinfo = self.getMe()
 
         self.logger.info('Bot "' + self.botinfo['first_name'] + '" initialized. Bot id: ' + str(self.botinfo['id']))
@@ -60,7 +61,7 @@ class TelegramBot(telepot.Bot):
 
 
     def callback(self, message):
-        for user in self.allowedusers:
+        for user in self.callbackusers:
             self.sendMessage(user, message)
 
     def sendMessage(self, chat_id, text,

@@ -6,4 +6,5 @@ path=bot.log
 restrict_contacts=true
 loadplugins=true
 allowed_contacts=1234567890
+callback_contacts=1234567890
 token=0987654321

@@ -18,6 +18,7 @@ class BotPlugin(BotPluginInterface):
         configparser = ConfigParser.SafeConfigParser()
         configparser.read(os.path.join(os.path.abspath(os.path.dirname(__file__)),'plugin.cfg'))
         self.apikey = configparser.get('owm', 'apikey')
+        self.defaultcity = configparser.get('owm', 'city')
         self.commands = COMMANDS
         self.startTime = datetime.now().replace(microsecond=0)
 
@@ -35,7 +36,7 @@ class BotPlugin(BotPluginInterface):
     def reply(self, message):
         owm = pyowm.OWM(self.apikey)
 
-        forecaster = owm.three_hours_forecast("Leiden,NL")
+        forecaster = owm.three_hours_forecast(self.defaultcity)
         forecast = forecaster.get_forecast()
         now = pyowm.timeutils.now()
         w = forecast.get(0)  # Always True in Italy, right? ;-)
