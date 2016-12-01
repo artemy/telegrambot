@@ -56,6 +56,7 @@ It's possible to run this bot as a linux daemon. File init.script contains examp
 
 ##TODO
 - [x] complete this readme
+- [ ] extend weather plugin to report weather for arbitrary cities
 - [ ] ?????
 - [ ] PROFIT
 
