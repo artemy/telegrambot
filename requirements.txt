@@ -1,0 +1,5 @@
+paho-mqtt==1.2
+pyowm==2.5.0
+sensor==1.0
+smbus-cffi==0.5.1
+telepot==10.2
