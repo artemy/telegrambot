@@ -1,7 +1,7 @@
 # telegrambot
 Ordinary everyday normal telegram bot with plugin support
 
-##Description:
+##Description
 Telegram bot that replies to the user messages or relays notifications from enabled plugins. 
 
 Telegram API is used via [telepot](https://github.com/nickoala/telepot) library.
@@ -56,7 +56,7 @@ It's possible to run this bot as a linux daemon. File init.script contains examp
 
 ##TODO
 - [x] complete this readme
-- [ ] extend weather plugin to report weather for arbitrary cities
+- [x] extend weather plugin to report weather for arbitrary cities
 - [ ] ?????
 - [ ] PROFIT
 

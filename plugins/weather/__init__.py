@@ -7,7 +7,7 @@ import pyowm
 
 from botplugin import BotPluginInterface
 
-COMMANDS = {'/weather': 'Weather report'}
+COMMANDS = {'/weather': 'Weather report for a specified city'}
 
 
 class BotPlugin(BotPluginInterface):
@@ -34,9 +34,14 @@ class BotPlugin(BotPluginInterface):
             return self.commands
 
     def reply(self, message):
+        city = self.defaultcity
+        if (len(message['text'].split(" ", 1)) > 1):
+            city = repr(message['text'].split(" ", 1)[1]) #repr is for discarding utf
+
+
         owm = pyowm.OWM(self.apikey)
 
-        forecaster = owm.three_hours_forecast(self.defaultcity)
+        forecaster = owm.three_hours_forecast(city)
         forecast = forecaster.get_forecast()
         now = pyowm.timeutils.now()
         w = forecast.get(0)
