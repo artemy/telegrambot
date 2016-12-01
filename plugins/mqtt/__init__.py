@@ -41,7 +41,7 @@ class BotPlugin(mqtt.Client, BotPluginInterface):
 
     def on_message(self, client, userdata, msg):
         self.logger.info("Incoming message: " + msg.topic+" "+str(msg.payload))
-        self.callback('[MQTT] from {} : {}'.format(msg.topic, msg.payload))
+        self.callback('[MQTT] {}: {}'.format('from ' + msg.topic if len(self.channels) > 1 else '', msg.payload))
 
 
     # The callback for when the client receives a CONNACK response from the server.
