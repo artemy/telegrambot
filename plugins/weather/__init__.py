@@ -7,7 +7,7 @@ import pyowm
 
 from botplugin import BotPluginInterface
 
-COMMANDS = {'/weather': 'Weather report for Leiden'}
+COMMANDS = {'/weather': 'Weather report'}
 
 
 class BotPlugin(BotPluginInterface):
@@ -39,7 +39,7 @@ class BotPlugin(BotPluginInterface):
         forecaster = owm.three_hours_forecast(self.defaultcity)
         forecast = forecaster.get_forecast()
         now = pyowm.timeutils.now()
-        w = forecast.get(0)  # Always True in Italy, right? ;-)
+        w = forecast.get(0)
 
         wind = w.get_wind()  # {'speed': 4.6, 'deg': 330}
         humidity = w.get_humidity()  # 87
