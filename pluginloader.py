@@ -1,8 +1,6 @@
 import imp
 import os
 
-import time
-
 PluginFolder = "./plugins"
 MainModule = "__init__"
 
@@ -12,6 +10,11 @@ class PluginLoader():
         self.logger = logger
 
     def __listPlugins(self):
+        """
+        List available plugins
+
+        :return: list of available plugins
+        """
         plugins = []
         possibleplugins = os.listdir(PluginFolder)
         for i in possibleplugins:
@@ -23,13 +26,20 @@ class PluginLoader():
         return plugins
 
     def __loadPlugin(self, plugin):
+        """
+        Loads (initializes) specified plugin
+
+        :param plugin: initialized plugin instance
+        """
         return getattr(imp.load_module(MainModule, *plugin["info"]), "BotPlugin")(self.logger)
 
-
-    def loadPlugins(self):
-        return self.loadPlugins(self, True)
-
     def loadPlugins(self, callbackfunction):
+        """
+        Load all available plugins and sets callback for them
+
+        :param callbackfunction: function that plugins can call to relay messages to bot
+        :return: dict with initialized plugin instances
+        """
         pluginlist = {}
         for i in self.__listPlugins():
             plugin = self.__loadPlugin(i)
@@ -39,15 +49,3 @@ class PluginLoader():
                 for command in plugin.getcommands():
                     pluginlist[command] = plugin
         return pluginlist
-
-def main():
-    pluginloader = PluginLoader()
-    plugins = pluginloader.loadPlugins(printcallback)
-    while 1:
-        time.sleep(10)
-
-def printcallback(plugin):
-    print "Callback is called by" + plugin
-
-if __name__ == '__main__':
-    main()
