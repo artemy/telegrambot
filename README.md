@@ -7,7 +7,7 @@ Telegram bot that replies to the user messages or relays notifications from enab
 Telegram API is used via [telepot](https://github.com/nickoala/telepot) library.
 
 ##Architecture
-Bot uses plugins to extend it's functionality. 
+Bot uses plugins to extend its functionality. 
 
 Plugins can reply to incoming message or make use of callback to propagate events back to bot to relay to the subscribed users.
 For reference about plugin architecture, refer to botplugin.py
